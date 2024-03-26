@@ -8,13 +8,14 @@ const findAll = async (page = 1, limit = 10, customerId = null) => {
   const repo = AppDataSource.getRepository(Order);
   let options = {
     take: limit,
-    skip: skip
+    skip: skip,
   };
   if (customerId) {
     options = {
       ...options,
       ...{
         where: { user: { id: customerId } },
+        order: { id: "DESC" },
       },
     };
   }
